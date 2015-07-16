@@ -1,58 +1,74 @@
 <?php
 namespace frontend\models;
 
-use common\models\User;
-use yii\base\Model;
 use Yii;
+use yii\base\Model;
+use common\models\User;
 
-/**
- * Signup form
- */
-class SignupForm extends Model
-{
-    public $username;
+class SignupForm extends Model{
     public $email;
+    public $name;
     public $password;
+    public $gender;
 
-    /**
-     * @inheritdoc
-     */
+
     public function rules()
     {
         return [
-            ['username', 'filter', 'filter' => 'trim'],
-            ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
-
-            ['email', 'filter', 'filter' => 'trim'],
-            ['email', 'required'],
+            // email and password are both required
+            [['email', 'name', 'gender', 'password'], 'required'],
+            // email must be correct
             ['email', 'email'],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+            // email is validated by validateEmail()
+            ['email',  'validateEmail'],
+            // password is validated by validatePassword()
+            ['password', 'validatePassword'],
 
-            ['password', 'required'],
-            ['password', 'string', 'min' => 6],
         ];
     }
 
-    /**
-     * Signs user up.
-     *
-     * @return User|null the saved model or null if saving fails
-     */
-    public function signup()
+    public function validatePassword($attribute, $params)
     {
-        if ($this->validate()) {
-            $user = new User();
-            $user->username = $this->username;
-            $user->email = $this->email;
-            $user->setPassword($this->password);
-            $user->generateAuthKey();
-            if ($user->save()) {
-                return $user;
+        if (!$this->hasErrors()) {
+            if ( User::checkAuthKey( $this->password )) {
+                $this->addError($attribute, 'Incorrect  password. Password should be more than 5 symbols.');
             }
         }
-
-        return null;
     }
+    public function validateEmail($attribute, $params)
+    {
+        if (!$this->hasErrors()) {
+            $user = $this->getUser();
+            if ( $user ) {
+                $this->addError($attribute, 'User with such e-mail already exist. Please, login.');
+            }
+        }
+    }
+
+    private function getUser(){
+
+            return User::findByEmail( $this->email );
+
+    }
+
+    public function signup(){
+
+        if( $this->validate() )
+        {
+            $user = new User();
+            $user->name = $this->name;
+            $user->email = $this->email;
+            $user->psw = md5( $this->password );
+            $user->gender = $this->gender;
+
+            if ( $user->save() ) {
+                return Yii::$app->getUser()->login( $user );
+            }
+
+        }
+
+        return false;
+
+    }
+
 }

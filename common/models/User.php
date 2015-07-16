@@ -62,4 +62,14 @@ class User extends ActiveRecord implements IdentityInterface
         return $this->getAuthKey() === md5($authKey);
     }
 
+   /*
+     * Checks the input password.
+     *
+     * @param string $attribute the attribute currently being checked
+    * */
+    public static function checkAuthKey($authKey)
+    {
+        return  strlen( $authKey ) <= 5;
+    }
+
 }
