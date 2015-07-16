@@ -62,6 +62,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function validateAuthKey($authKey)
     {
         return $this->getAuthKey() === md5($authKey);
+<<<<<<< HEAD
 
     }
 
@@ -90,3 +91,8 @@ class User extends ActiveRecord implements IdentityInterface
 
 }
 
+=======
+    }
+
+}
+>>>>>>> f9bab93... edit User model
