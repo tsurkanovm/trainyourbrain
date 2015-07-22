@@ -89,4 +89,11 @@ class LoginForm extends Model
 
         return $this->_user;
     }
+
+    public function attributeLabels()
+    {
+        return [
+            'email' => Yii::t('app', 'E-mail address'),
+        ];
+    }
 }

@@ -5,6 +5,7 @@ use Yii;
 use yii\base\NotSupportedException;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use yii\base\Event;
 
 /**
  * User model
@@ -72,4 +73,10 @@ class User extends ActiveRecord implements IdentityInterface
         return  strlen( $authKey ) <= 5;
     }
 
+//EVENT_BEFORE_INSERT
+
 }
+
+//Event::on(ActiveRecord::className(), ActiveRecord::EVENT_AFTER_INSERT, function ($event) {
+//    $event->sender->psw = md5($event->sender->psw);
+//});
