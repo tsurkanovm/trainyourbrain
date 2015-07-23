@@ -5,6 +5,7 @@ use Yii;
 use yii\base\NotSupportedException;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use frontend\models\Role;
 use yii\base\Event;
 
 /**
@@ -61,6 +62,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function validateAuthKey($authKey)
     {
         return $this->getAuthKey() === md5($authKey);
+
     }
 
    /*
@@ -73,10 +75,18 @@ class User extends ActiveRecord implements IdentityInterface
         return  strlen( $authKey ) <= 5;
     }
 
-//EVENT_BEFORE_INSERT
+    public function getRole()
+    {
+        return $this->hasOne(Role::className(), ['idrole' => 'role_idrole']);
+    }
+
+
+
+    public function init(){
+        Event::on(User::className(), User::EVENT_BEFORE_INSERT, function ($event) {
+            $event->sender->psw = md5($event->sender->psw);
+        });
+    }
 
 }
 
-//Event::on(ActiveRecord::className(), ActiveRecord::EVENT_AFTER_INSERT, function ($event) {
-//    $event->sender->psw = md5($event->sender->psw);
-//});

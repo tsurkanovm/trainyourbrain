@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use frontend\models\DashboardForm;
 use Yii;
 use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
@@ -78,7 +79,7 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            return $this->redirect(['dashboard/index']);
         } else {
             return $this->render('login', [
                 'model' => $model,
@@ -120,7 +121,7 @@ class SiteController extends Controller
     {
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
-            return $this->goHome();
+            return $this->redirect(['dashboard/index']);
         } else {
             return $this->render('signup', [
                 'model' => $model,
@@ -165,4 +166,12 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+
+/**
+ * Creates a new Result model.
+ * If creation is successful, the browser will be redirected to the 'view' page.
+ * @return mixed
+ */
+
 }
