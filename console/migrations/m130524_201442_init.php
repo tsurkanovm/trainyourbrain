@@ -14,7 +14,7 @@ class m130524_201442_init extends Migration
 
      // ======== User ====================================================================
         $this->createTable('{{%User}}', [
-            'idUser' => Schema::TYPE_INTEGER .'(10) unsigned NOT NULL AUTO_INCREMENT',
+            'idUser' => Schema::TYPE_PK,
             'email' => Schema::TYPE_STRING . '(45) NOT NULL',
             'name' => Schema::TYPE_STRING . '(100) NOT NULL',
             'psw' => Schema::TYPE_STRING . '(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL',
@@ -24,42 +24,42 @@ class m130524_201442_init extends Migration
             'photo' => Schema::TYPE_STRING . '(255) DEFAULT NULL'
         ], $tableOptions);
 
-        $this->addPrimaryKey('idUser', '{{%User}}', 'idUser' );
+        //$this->addPrimaryKey('idUser', '{{%User}}', 'idUser' );
         $this->createIndex( 'ix_email', '{{%User}}', 'email' ,true );
     // ====================================================================================
 
     // ======== role ======================================================================
         $this->createTable('{{%role}}', [
-            'idrole' => Schema::TYPE_SMALLINT . '(3) unsigned NOT NULL AUTO_INCREMENT',
+            'idrole' => Schema::TYPE_PK,
             'title' => Schema::TYPE_STRING . '(20) NOT NULL'
         ], $tableOptions);
 
-        $this->addPrimaryKey('idrole', '{{%role}}', 'idrole' );
+        //$this->addPrimaryKey('idrole', '{{%role}}', 'idrole' );
         $this->createIndex( 'ix_title', '{{%role}}', 'title' ,true );
-        $this->addForeignKey('User_role_fk','role','idRole','User','role_idrole');
+        $this->addForeignKey('User_role_fk','User','role_idrole','role','idrole');
     // ====================================================================================
 
     // ======== test ======================================================================
         $this->createTable('{{%test}}', [
-            'idTest' => Schema::TYPE_SMALLINT . '(3) unsigned NOT NULL AUTO_INCREMENT',
+            'idTest' => Schema::TYPE_PK,
             'title' => Schema::TYPE_STRING . '(20) NOT NULL',
             'type' => ' enum(\'usual\',\'control\') DEFAULT NULL'
         ], $tableOptions);
 
-        $this->addPrimaryKey('idTest', '{{%test}}', 'idTest' );
+       // $this->addPrimaryKey('idTest', '{{%test}}', 'idTest' );
         $this->createIndex( 'ix_title', '{{%test}}', 'title' ,true );
     // ====================================================================================
 
         // ======== result ====================================================================
         $this->createTable('{{%result}}', [
-            'idResult' => Schema::TYPE_INTEGER .'(10) unsigned NOT NULL AUTO_INCREMENT',
+            'idResult' => Schema::TYPE_PK,
             'result' => Schema::TYPE_INTEGER . '(10) NOT NULL',
             'date_participate' => Schema::TYPE_DATE . ' NOT NULL',
             'idUser' => Schema::TYPE_INTEGER .'(10) unsigned NOT NULL',
             'idTest' => Schema::TYPE_SMALLINT . '(3) unsigned NOT NULL'
         ], $tableOptions);
 
-        $this->addPrimaryKey('idResult', '{{%result}}', 'idResult' );
+    //    $this->addPrimaryKey('idResult', '{{%result}}', 'idResult' );
         $this->addForeignKey('fk_results_Users','User','idUser','result','idUser');
         $this->addForeignKey('fk_results_tests','test','idTest','result','idTest');
         // ====================================================================================
@@ -92,5 +92,8 @@ class m130524_201442_init extends Migration
     public function down()
     {
         $this->dropTable('{{%User}}');
+        $this->dropTable('{{%role}}');
+//        $this->dropTable('{{%test}}');
+//        $this->dropTable('{{%result}}');
     }
 }
