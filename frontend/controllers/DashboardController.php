@@ -15,10 +15,10 @@ class DashboardController extends \yii\web\Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only' => ['logout', 'test' , 'index'],
                 'rules' => [
         [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'test'],
                         'allow' => true,
                         'roles' => ['@'],
             ],

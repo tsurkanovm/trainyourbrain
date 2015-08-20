@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'password')->passwordInput() ?>
 <!--                //= $form->field($model, 'rememberMe')->checkbox() ?> -->
                 <div style="color:#999;margin:1em 0">
-                 <?= Html::a('Signup', ['site/signup']) ?>
+                 <?= Html::a('Signup', ['signup']) ?>
             </div>
                 <div class="form-group">
                     <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
