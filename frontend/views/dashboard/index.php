@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\DashboardForm */
@@ -11,19 +12,23 @@ use yii\widgets\ActiveForm;
 
     <div class="row">
         <div class="col-lg-5">
-            <?php
-            echo "<p>{$model->name}</p>";
-            echo "<p>{$model->role}</p>";
-            echo "<p>{$model->gender}</p>";
-            echo "<p>{$model->test1_name}</p>";
-            echo "<p>{$model->test1_best_result}</p>";
-            echo "<p>{$model->test1_best_result_date}</p>";
-            echo "<p>{$model->test2_name}</p>";
-            echo "<p>{$model->test3_name}</p>";
-            echo "<p>{$model->test4_name}</p>";
 
 
-            ?>
+            <?= DetailView::widget([
+                       'model' => $model,
+                        'attributes' => [
+                                'name',
+                                'role',
+                                'gender',
+                                'test1_name',
+                                'test1_best_result',
+                                'test1_best_result_date',
+                                'test2_name',
+                                'test3_name',
+                                'test4_name',
+                                'photo:image',
+                            ],
+                    ]) ?>
             <?= Html::a('LogOut', ['dashboard/logout'], ['class' => 'btn btn-primary', 'name' => 'logOut', 'data-method' => 'post']) ?>
         </div>
     </div>

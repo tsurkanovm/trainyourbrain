@@ -4,12 +4,15 @@ namespace frontend\models;
 use Yii;
 use yii\base\Model;
 use common\models\User;
+use yii\web\UploadedFile;
+use yii\helpers\VarDumper;
 
 class SignupForm extends Model{
     public $email;
     public $name;
     public $password;
     public $gender;
+    public $photo;
 
 
     public function rules()
@@ -24,6 +27,8 @@ class SignupForm extends Model{
             ['name', 'trim'],
             // password is the string with min length = 6
             ['password', 'string', 'min' => 6],
+
+            [['photo'], 'file'],
 
         ];
     }
@@ -49,7 +54,10 @@ class SignupForm extends Model{
 
 
     public function signup(){
-
+        //VarDumper::dump(Yii::getAlias('@webroot'));
+        $this->photo = UploadedFile::getInstance($this, 'photo');
+        //VarDumper::dump($this->photo);
+        //die;
         if( $this->validate() )
         {
             $user = new User();
@@ -57,10 +65,18 @@ class SignupForm extends Model{
             $user->email = $this->email;
             $user->psw =  $this->password;
             $user->gender = $this->gender;
-           // $user->load(Yii::$app->request->post());
+
 
             if ( $user->save() ) {
+
+
+            $photoPath = '/uploads/' . $user->getId() . '.' . $this->photo->extension;
+            $this->photo->saveAs( Yii::getAlias('@webroot') . $photoPath );
+            $user->photo = $photoPath;
+
+            If ( $user->save( false ) )
                 return Yii::$app->getUser()->login( $user );
+
             }
 
         }

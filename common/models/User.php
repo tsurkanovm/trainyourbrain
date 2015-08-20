@@ -19,6 +19,7 @@ use yii\base\Event;
  * @property string $gender
  * @property integer $role_idrole
  * @property string (data) $registration_data
+ * @property string  $photo
  */
 class User extends ActiveRecord implements IdentityInterface
 {

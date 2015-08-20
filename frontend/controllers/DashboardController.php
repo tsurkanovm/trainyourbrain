@@ -18,7 +18,7 @@ class DashboardController extends \yii\web\Controller
                 'only' => ['logout', 'test' , 'index'],
                 'rules' => [
         [
-                        'actions' => ['logout', 'test'],
+                        'actions' => ['logout', 'test' , 'index'],
                         'allow' => true,
                         'roles' => ['@'],
             ],

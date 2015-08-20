@@ -10,6 +10,7 @@ class DashboardForm extends Model{
     public $name;
     public $gender;
     public $role;
+    public $photo;
     public $settings;
     public $test1_name;
     public $test1_best_result;
@@ -31,9 +32,11 @@ class DashboardForm extends Model{
     }
 
     private function refreshAttributes($idUser){
+
         $_user = User::findIdentity( $idUser );
         $this->name = $_user->name;
         $this->gender = $_user->gender;
+        $this->photo = $_user->photo;
         $this->role = $_user->role->title;
         $this->settings = $_user->settings;
         $this->test1_name = Test::findOne(1)->title;
