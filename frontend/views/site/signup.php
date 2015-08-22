@@ -15,14 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>Please fill out the following fields to sign up:</p>
 
-    <?php $form = ActiveForm::begin( ['options' => ['enctype' => 'multipart/form-data']] ); ?>
+    <?php $form = ActiveForm::begin( ); ?>
 
         <?= $form->field($model, 'email') ?>
         <?= $form->field($model, 'name') ?>
-        <?= $form->field($model, 'gender')->dropDownList( ['male' => 'male', 'female' => 'female'] ) ?>
         <?= $form->field($model, 'password')->passwordInput() ?>
-        <?= $form->field($model, 'photo')->fileInput() ?>
-
     
         <div class="form-group">
             <?= Html::submitButton(Yii::t('app', 'Submit'), ['class' => 'btn btn-primary']) ?>

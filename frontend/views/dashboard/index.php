@@ -29,6 +29,11 @@ use yii\widgets\DetailView;
                                 'photo:image',
                             ],
                     ]) ?>
+
+<!--            //= Html::a('Edit user profile', [ 'dashboard/profile', 'id' => $model->userid ]) ?> -->
+            <?= Html::a('Edit user profile', [ 'dashboard/profile' ]) ?>
+            <br/>
+            <br/>
             <?= Html::a('LogOut', ['dashboard/logout'], ['class' => 'btn btn-primary', 'name' => 'logOut', 'data-method' => 'post']) ?>
         </div>
     </div>

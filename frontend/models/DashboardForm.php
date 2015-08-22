@@ -8,6 +8,7 @@ use yii\helpers\VarDumper;
 
 class DashboardForm extends Model{
     public $name;
+    public $userid;
     public $gender;
     public $role;
     public $photo;
@@ -27,27 +28,28 @@ class DashboardForm extends Model{
 
 
 
-    public function __construct( $idUser ){
-        $this->refreshAttributes( $idUser );
+    public function __construct( $userid ){
+
+        //Yii::$app->user->identity
+        $this->userid = $userid;
+        $this->refreshAttributes( );
     }
 
-    private function refreshAttributes($idUser){
+    private function refreshAttributes(){
 
-        $_user = User::findIdentity( $idUser );
+        $_user = User::findIdentity( $this->userid );
         $this->name = $_user->name;
         $this->gender = $_user->gender;
         $this->photo = $_user->photo;
         $this->role = $_user->role->title;
-        $this->settings = $_user->settings;
+       // $this->settings = $_user->settings;
         $this->test1_name = Test::findOne(1)->title;
         $this->test2_name = Test::findOne(2)->title;
         $this->test3_name = Test::findOne(3)->title;
         $this->test4_name = Test::findOne(4)->title;
-        $res_array = Result::find()->where(['idUser' => $_user->idUser, 'idTest' => 1 ])->orderBy('result')->one();
+        $res_array = Result::find()->where(['userid' => $_user->userid, 'testid' => 1 ])->orderBy('result')->one();
         $this->test1_best_result = $res_array['result'];
         $this->test1_best_result_date = $res_array['date_participate'];
-
-
 
     }
 

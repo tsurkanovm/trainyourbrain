@@ -11,13 +11,13 @@ use yii\base\Event;
 /**
  * User model
  *
- * @property integer $idUser
+ * @property integer $userid
  * @property string $email
  * @property string $name
  * @property string $psw
  * @property string $settings
  * @property string $gender
- * @property integer $role_idrole
+ * @property integer $roleid
  * @property string (data) $registration_data
  * @property string  $photo
  */
@@ -26,13 +26,13 @@ class User extends ActiveRecord implements IdentityInterface
 
     public static function tableName()
     {
-        return 'User';
+        return 'user';
     }
 
 
     public static function findIdentity($id)
     {
-        return static::findOne(['idUser' => $id]);
+        return static::findOne(['userid' => $id]);
     }
 
 
@@ -74,7 +74,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function getRole()
     {
-        return $this->hasOne(Role::className(), ['idrole' => 'role_idrole']);
+        return $this->hasOne(Role::className(), ['roleid' => 'roleid']);
     }
 
 

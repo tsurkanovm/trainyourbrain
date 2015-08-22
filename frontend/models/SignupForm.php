@@ -18,7 +18,8 @@ class SignupForm extends Model{
     public function rules()
     {
         return [
-            [['email', 'name', 'gender', 'password'], 'required'],
+            [['email', 'name', 'password'], 'required', 'on' => 'register'],
+            [['name'], 'required', 'on' => 'profile'],
             // email must be correct
             ['email', 'email'],
             // email must unique
@@ -28,7 +29,8 @@ class SignupForm extends Model{
             // password is the string with min length = 6
             ['password', 'string', 'min' => 6],
 
-            [['photo'], 'file'],
+            // @todo add extention
+            [['photo'], 'file', 'skipOnEmpty' => true ], //, 'extensions' => ['png', 'jpg', 'gif'], 'maxSize' => 1024*1024],
 
         ];
     }
@@ -54,27 +56,43 @@ class SignupForm extends Model{
 
 
     public function signup(){
-        //VarDumper::dump(Yii::getAlias('@webroot'));
-        $this->photo = UploadedFile::getInstance($this, 'photo');
-        //VarDumper::dump($this->photo);
-        //die;
+
         if( $this->validate() )
         {
             $user = new User();
             $user->name = $this->name;
             $user->email = $this->email;
             $user->psw =  $this->password;
+
+
+            if ( $user->save() ) {
+
+                return Yii::$app->getUser()->login( $user );
+
+            }
+
+        }
+
+        return false;
+
+    }
+    public function profile( ){
+        $this->photo = UploadedFile::getInstance($this, 'photo');
+        if( $this->validate() )
+        {
+            $user = Yii::$app->user->identity;
+            if ($this->photo) {
+                $photoPath = '/uploads/' . $user->userid . '.' . $this->photo->extension;
+                $this->photo->saveAs( Yii::getAlias('@webroot') . $photoPath );
+                $user->photo = $photoPath;
+            }
+
+
             $user->gender = $this->gender;
 
 
             if ( $user->save() ) {
 
-
-            $photoPath = '/uploads/' . $user->getId() . '.' . $this->photo->extension;
-            $this->photo->saveAs( Yii::getAlias('@webroot') . $photoPath );
-            $user->photo = $photoPath;
-
-            If ( $user->save( false ) )
                 return Yii::$app->getUser()->login( $user );
 
             }

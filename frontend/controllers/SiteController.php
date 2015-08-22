@@ -22,39 +22,39 @@ class SiteController extends Controller
      * @inheritdoc
      */
 
-//    public function behaviors()
-//    {
-//        return [
-//            'access' => [
-//                'class' => AccessControl::className(),
-//                'only' => ['signup'],
-//                'rules' => [
-//                    [
-//                        'actions' => ['signup'],
-//                        'allow' => true,
-//                        'roles' => ['?']
-//                ],
-//                ],
-//            ],
-//        ];
-//    }
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['signup'],
+                'rules' => [
+                    [
+                        'actions' => ['signup'],
+                        'allow' => true,
+                        'roles' => ['?']
+                ],
+                ],
+            ],
+        ];
+    }
 
     /**
      * @inheritdoc
      */
     // @TODO what is it?
-    public function actions()
-    {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
-        ];
-    }
+//    public function actions()
+//    {
+//        return [
+//            'error' => [
+//                'class' => 'yii\web\ErrorAction',
+//            ],
+//            'captcha' => [
+//                'class' => 'yii\captcha\CaptchaAction',
+//                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+//            ],
+//        ];
+//    }
 
     public function actionIndex()
     {
@@ -111,7 +111,7 @@ class SiteController extends Controller
 //
     public function actionSignup()
     {
-        $model = new SignupForm();
+        $model = new SignupForm(['scenario' => 'register']);
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
             return $this->redirect(['dashboard/index']);
         } else {
