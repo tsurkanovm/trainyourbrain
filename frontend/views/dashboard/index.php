@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\DetailView;
+use yii\widgets\ListView;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\DashboardForm */
@@ -13,29 +14,38 @@ use yii\widgets\DetailView;
     <div class="row">
         <div class="col-lg-5">
 
-
+            <?=
+            Yii::$app->formatter->asImage($model->photo, ['width' => "70", 'height' => "70"]);
+            ?>
             <?= DetailView::widget([
-                       'model' => $model,
-                        'attributes' => [
-                                'name',
-                                'role',
-                                'gender',
-                                'test1_name',
-                                'test1_best_result',
-                                'test1_best_result_date',
-                                'test2_name',
-                                'test3_name',
-                                'test4_name',
-                                'photo:image',
-                            ],
-                    ]) ?>
+                'model' => $model,
+                'attributes' => [
+                    'name',
+                    'role',
+                ],
+            ]) ?>
 
-<!--            //= Html::a('Edit user profile', [ 'dashboard/profile', 'id' => $model->userid ]) ?> -->
-            <?= Html::a('Edit user profile', [ 'dashboard/profile' ]) ?>
-            <br/>
-            <br/>
-            <?= Html::a('LogOut', ['dashboard/logout'], ['class' => 'btn btn-primary', 'name' => 'logOut', 'data-method' => 'post']) ?>
+            <?= Html::a('Edit user profile', ['dashboard/profile']) ?>
+
         </div>
     </div>
+
+    <br/>
+    <br/>
+
+    <div class="row">
+        <div class="col-lg-5">
+
+            <?= ListView::widget([
+            'dataProvider' => $dataProvider,
+            'itemView' => 'itemListResult',
+            ]);?>
+        </div>
+    </div>
+
+    <br/>
+    <br/>
+    <?= Html::a('LogOut', ['dashboard/logout'], ['class' => 'btn btn-primary', 'name' => 'logOut', 'data-method' => 'post']) ?>
+
 
 </div><!-- dashboard-index -->

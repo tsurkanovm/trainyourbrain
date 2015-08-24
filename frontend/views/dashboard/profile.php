@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
     $default_gender = $_user->gender;?>
 
     <?= $form->field($model, 'name', ['inputOptions' => ['value' => $default_name]]) ?>
-    <?= $form->field($model, 'gender', ['inputOptions' => ['value' => $default_gender]])->dropDownList(['male' => 'male', 'female' => 'female']) ?>
+    <?= $form->field($model, 'gender')->dropDownList(  ['male' => 'male', 'female' => 'female']) ?>
     <?= $form->field($model, 'photo')->fileInput() ?>
 
 <!--    @todo use ajax for showing photo after choosing the file -->

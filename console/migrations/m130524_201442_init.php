@@ -54,7 +54,7 @@ class m130524_201442_init extends Migration
         $this->createTable('{{%result}}', [
             'resultid' => Schema::TYPE_PK . ' AUTO_INCREMENT',
             'result' => Schema::TYPE_INTEGER . '(10) NOT NULL',
-            'date_participate' => Schema::TYPE_DATE . ' NOT NULL',
+            'date_participate' => Schema::TYPE_DATE . ' NOT NULL DEFAULT CURRENT_TIMESTAMP',
             'userid' => Schema::TYPE_INTEGER . '(11) NOT NULL',
             'testid' => Schema::TYPE_SMALLINT . '(3) unsigned NOT NULL'
         ], $tableOptions);

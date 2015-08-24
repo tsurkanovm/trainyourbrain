@@ -64,7 +64,6 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->getAuthKey() === md5($authKey);
 
-
     }
 
     public static function checkAuthKey($authKey)
@@ -74,7 +73,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function getRole()
     {
-        return $this->hasOne(Role::className(), ['roleid' => 'roleid']);
+        return $this->hasOne(Role::className(), ['roleid' => 'roleid'])->one()->title;
     }
 
 

@@ -26,6 +26,9 @@ class SignupForm extends Model{
             ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
             // name must be without spaces
             ['name', 'trim'],
+
+            ['gender', 'safe'],
+
             // password is the string with min length = 6
             ['password', 'string', 'min' => 6],
 
@@ -78,10 +81,12 @@ class SignupForm extends Model{
     }
     public function profile( ){
         $this->photo = UploadedFile::getInstance($this, 'photo');
+
         if( $this->validate() )
         {
             $user = Yii::$app->user->identity;
             if ($this->photo) {
+
                 $photoPath = '/uploads/' . $user->userid . '.' . $this->photo->extension;
                 $this->photo->saveAs( Yii::getAlias('@webroot') . $photoPath );
                 $user->photo = $photoPath;
@@ -89,11 +94,12 @@ class SignupForm extends Model{
 
 
             $user->gender = $this->gender;
+            $user->name = $this->name;
 
 
-            if ( $user->save() ) {
+            if ( $user->save( false ) ) {
 
-                return Yii::$app->getUser()->login( $user );
+                return true;
 
             }
 
