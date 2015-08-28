@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\DetailView;
-use yii\widgets\ListView;
+use common\component\ListViewWithoutSummary;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\DashboardForm */
@@ -36,7 +36,7 @@ use yii\widgets\ListView;
     <div class="row">
         <div class="col-lg-5">
 
-            <?= ListView::widget([
+            <?= ListViewWithoutSummary::widget([
             'dataProvider' => $dataProvider,
             'itemView' => 'itemListResult',
             ]);?>

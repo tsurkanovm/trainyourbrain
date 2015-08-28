@@ -33,10 +33,17 @@ class SignupForm extends Model{
             ['password', 'string', 'min' => 6],
 
             // @todo add extention
-            [['photo'], 'file', 'skipOnEmpty' => true ], //, 'extensions' => ['png', 'jpg', 'gif'], 'maxSize' => 1024*1024],
+            [['photo'], 'validatePhoto', 'skipOnEmpty' => true ]//, 'extensions' => ['png', 'jpg', 'gif'], 'maxSize' => 1024*1024],
 
         ];
     }
+
+        public function validatePhoto($attribute, $params)
+    {
+
+
+    }
+
 
 //    public function validatePassword($attribute, $params)
 //    {
