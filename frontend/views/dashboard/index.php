@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\DetailView;
-use common\component\ListViewWithoutSummary;
+use common\components\ListViewWithoutSummary;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\DashboardForm */
@@ -15,10 +15,10 @@ use common\component\ListViewWithoutSummary;
         <div class="col-lg-5">
 
             <?=
-            Yii::$app->formatter->asImage($model->photo, ['width' => "70", 'height' => "70"]);
+            Yii::$app->formatter->asImage($user_model->photo, ['width' => "70", 'height' => "70"]);
             ?>
             <?= DetailView::widget([
-                'model' => $model,
+                'model' => $user_model,
                 'attributes' => [
                     'name',
                     'role',

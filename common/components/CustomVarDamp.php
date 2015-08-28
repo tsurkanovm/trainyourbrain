@@ -6,7 +6,7 @@
  * Time: 16:58
  */
 
-namespace common\component;
+namespace common\components;
 use yii\helpers\BaseVarDumper;
 
 class CustomVarDamp extends BaseVarDumper  {

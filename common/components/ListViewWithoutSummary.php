@@ -5,7 +5,7 @@
  * Date: 24.08.2015
  * Time: 20:07
  */
-namespace common\component;
+namespace common\components;
 
 use yii\widgets\ListView;
 

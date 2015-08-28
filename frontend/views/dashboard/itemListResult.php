@@ -6,18 +6,26 @@ use yii\helpers\HtmlPurifier;
 //var_dump($model);
 ?>
 <div class="post">
-    <h4><?= Html::encode($model['title']) ?></h4>
 
-    <div>
-        <?= 'Last result - ' . HtmlPurifier::process(Yii::$app->formatter->asDate($model['lastDate'], 'medium')) ?>
-        <?= '  -  ' ?>
-        <?= HtmlPurifier::process($model['lastResult']) . ' sec.' ?>
-    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th><?= Html::encode($model['title']) ?></th>
 
-    <div>
-        <?= 'Best result - ' . HtmlPurifier::process(Yii::$app->formatter->asDate($model['bestDate'], 'medium')) ?>
-        <?= '  -  ' ?>
-        <?= HtmlPurifier::process($model['bestResult']) . ' sec.' ?>
-    </div>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="success">
+            <td>Лучший результат</td>
+            <td><?=HtmlPurifier::process( $model->bestResultDate )?></td>
+            <td><?=HtmlPurifier::process( $model->bestResult )?></td>
+        </tr>
+        <tr class="info">
+            <td>Последний результат</td>
+            <td><?=HtmlPurifier::process( $model->lastResultDate )?></td>
+            <td><?=HtmlPurifier::process($model->lastResult)?></td>
+        </tr>
+        </tbody>
+    </table>
 
 </div>
