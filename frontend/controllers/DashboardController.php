@@ -10,19 +10,20 @@ use frontend\models\SignupForm;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
-use yii\helpers\VarDumper;
+use common\components\CustomVarDamp;
 
 class DashboardController extends \yii\web\Controller
 {
     public function behaviors()
     {
+        // @ todo - rewrite - now it's to clumsy
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'test', 'index', 'profile'],
+                'only' => ['logout', 'test', 'index', 'profile', 'viewResults'],
                 'rules' => [
                     [
-                        'actions' => ['logout', 'test', 'index', 'profile'],
+                        'actions' => ['logout', 'test', 'index', 'profile', 'results'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -41,14 +42,12 @@ class DashboardController extends \yii\web\Controller
     {
 
         $user_model = User::findIdentity(Yii::$app->user->id);
-        //$test_model = new Test();
 
         $dataProvider = new ActiveDataProvider([
             'query' => Test::find(),]);
 
         return $this->render('index',
             ['user_model' => $user_model,
-       //         'test_model' => $test_model,
                 'dataProvider' => $dataProvider]);
     }
 
@@ -64,6 +63,25 @@ class DashboardController extends \yii\web\Controller
         }
 
     }
+
+    public function actionResults()
+    {
+        $testId = 0;
+        $get_array = Yii::$app->request->get();
+
+        if( isset( $get_array['testid'] ) )
+            $testId = $get_array['testid'];
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => Result::find()->andFilterWhere(['userid' => Yii::$app->user->id, 'testid' => $testId]),
+            'pagination' => [
+                'pageSize' => 2,
+            ],]);
+
+        return $this->render('results',
+            ['dataProvider' => $dataProvider]);
+    }
+
 
     public function actionTest()
     {
