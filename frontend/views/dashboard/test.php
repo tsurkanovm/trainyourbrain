@@ -1,8 +1,8 @@
 <?php
 /* @var $this yii\web\View */
-use frontend\assets\TestPerformingAsset;
+use frontend\assets\TestPerfofmingAsset;
 
-TestPerformingAsset::register($this);
+TestPerfofmingAsset::register($this);
 ?>
 <h1>dashboard/test</h1>
 

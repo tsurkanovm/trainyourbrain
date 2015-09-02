@@ -8,6 +8,12 @@ use yii\web\UploadedFile;
 use yii\helpers\VarDumper;
 use yii\validators\FileValidator;
 
+
+/**
+ * Class SignupForm
+ * Form for registration and edit profile actions
+ * @package frontend\models
+ */
 class SignupForm extends Model{
     public $email;
     public $name;
@@ -39,11 +45,6 @@ class SignupForm extends Model{
         ];
     }
 
-        public function validatePhoto($attribute, $params)
-    {
-
-
-    }
 
 
 //    public function validatePassword($attribute, $params)
