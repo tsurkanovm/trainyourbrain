@@ -41,5 +41,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <?php ActiveForm::end();
     ?>
+    <?= Html::a('Вернуться в кабинет', ['dashboard/index'], ['class' => 'btn btn-primary', 'name' => 'Return',]) ?>
 
 </div><!-- signup -->

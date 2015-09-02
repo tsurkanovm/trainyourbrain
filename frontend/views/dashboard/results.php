@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\grid\SerialColumn;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\DashboardForm */
@@ -14,7 +15,10 @@ use yii\grid\GridView;
 
             <?=  GridView::widget([
                 'dataProvider' => $dataProvider,
-                ]
+                    'columns' => [['class' => SerialColumn::className()],
+                        'date_participate',
+                        'result',
+                ]]
             ) ?>
 
             <?= Html::a('Вернуться в кабинет', ['dashboard/index'], ['class' => 'btn btn-primary', 'name' => 'Return',]) ?>
