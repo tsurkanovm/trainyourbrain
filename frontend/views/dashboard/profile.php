@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-//use yii\widgets\DetailView;
+use yii\widgets\DetailView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\SignupForm */
@@ -24,12 +25,18 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $form->field($model, 'photo')->fileInput() ?>
 
 <!--    @todo use ajax for showing photo after choosing the file -->
-<!--    //= DetailView::widget([
-//        'model' => $model,
-//        'attributes' => [
-//            'photo:image',
-//        ],
-//    ]) ?> -->
+<?php
+Pjax::begin();
+?>
+   <?=  DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            'photo:image',
+        ],
+    ]) ?>
+    <?php
+    Pjax::end();
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary']) ?>

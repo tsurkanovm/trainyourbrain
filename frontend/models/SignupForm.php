@@ -6,6 +6,7 @@ use yii\base\Model;
 use common\models\User;
 use yii\web\UploadedFile;
 use yii\helpers\VarDumper;
+use yii\validators\FileValidator;
 
 class SignupForm extends Model{
     public $email;
@@ -33,7 +34,7 @@ class SignupForm extends Model{
             ['password', 'string', 'min' => 6],
 
             // @todo add extention
-            [['photo'], 'validatePhoto', 'skipOnEmpty' => true ]//, 'extensions' => ['png', 'jpg', 'gif'], 'maxSize' => 1024*1024],
+            [['photo'], 'file', 'skipOnEmpty' => true , 'checkExtensionByMimeType' => false,'extensions' => ['png', 'jpg', 'gif'], 'maxSize' => 1024*1024],
 
         ];
     }
