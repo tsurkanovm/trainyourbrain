@@ -4,54 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7d6920d3d8a83fcf40110b4b3ea56789",
-    "content-hash": "d030bbde3f9257141572d8412e897119",
+    "hash": "0c0e98061064d8e158139f314883ce37",
+    "content-hash": "b6c7e108868de58ca00685c59dfca6a4",
     "packages": [
-        {
-            "name": "artweb/yii2-multiparser",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tsurkanovm/yii-multiparser.git",
-                "reference": "7a3cd2728c4b0c9db1b6bcea411f8df87b69ecd3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tsurkanovm/yii-multiparser/zipball/7a3cd2728c4b0c9db1b6bcea411f8df87b69ecd3",
-                "reference": "7a3cd2728c4b0c9db1b6bcea411f8df87b69ecd3",
-                "shasum": ""
-            },
-            "require": {
-                "yiisoft/yii2": "*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "yii\\multiparser\\": "lib\\"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mihail Tsurkanov",
-                    "email": "tsurkanovm@gmail.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "This extension provides a Multiparser solution for Yii framework 2.0.",
-            "homepage": "https://github.com/tsurkanovm/yii-multiparser.git",
-            "keywords": [
-                "csv",
-                "parser",
-                "xlsx",
-                "xml",
-                "yii2"
-            ],
-            "time": "2015-10-26 10:04:39"
-        },
         {
             "name": "bower-asset/bootstrap",
             "version": "v3.3.5",
@@ -227,16 +182,16 @@
         },
         {
             "name": "bower-asset/yii2-pjax",
-            "version": "v2.0.4",
+            "version": "v2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/jquery-pjax.git",
-                "reference": "3f20897307cca046fca5323b318475ae9dac0ca0"
+                "reference": "6818718408086db6bdcf33649cecb86b6b4f9b67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/jquery-pjax/zipball/3f20897307cca046fca5323b318475ae9dac0ca0",
-                "reference": "3f20897307cca046fca5323b318475ae9dac0ca0",
+                "url": "https://api.github.com/repos/yiisoft/jquery-pjax/zipball/6818718408086db6bdcf33649cecb86b6b4f9b67",
+                "reference": "6818718408086db6bdcf33649cecb86b6b4f9b67",
                 "shasum": ""
             },
             "require": {
@@ -368,12 +323,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
-                "reference": "dbfca67925de600be890d3a5d976625b51620046"
+                "reference": "598f23a93101d1fbf201aa85ac186ddebe63a0fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/dbfca67925de600be890d3a5d976625b51620046",
-                "reference": "dbfca67925de600be890d3a5d976625b51620046",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/598f23a93101d1fbf201aa85ac186ddebe63a0fd",
+                "reference": "598f23a93101d1fbf201aa85ac186ddebe63a0fd",
                 "shasum": ""
             },
             "type": "library",
@@ -408,7 +363,7 @@
                 "progress",
                 "upload"
             ],
-            "time": "2015-10-23 15:58:30"
+            "time": "2015-12-23 12:49:57"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -462,6 +417,51 @@
                 "mailer"
             ],
             "time": "2015-06-06 14:19:39"
+        },
+        {
+            "name": "tsum/yii2-multiparser",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tsurkanovm/yii-multiparser.git",
+                "reference": "6d2c80fe2d8570caa18c196504577b066c40ef5f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tsurkanovm/yii-multiparser/zipball/6d2c80fe2d8570caa18c196504577b066c40ef5f",
+                "reference": "6d2c80fe2d8570caa18c196504577b066c40ef5f",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "yii\\multiparser\\": "lib\\"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mihail Tsurkanov",
+                    "email": "tsurkanovm@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This extension provides a Multiparser solution for Yii framework 2.0.",
+            "homepage": "https://github.com/tsurkanovm/yii-multiparser.git",
+            "keywords": [
+                "csv",
+                "parser",
+                "xlsx",
+                "xml",
+                "yii2"
+            ],
+            "time": "2015-12-25 15:53:32"
         },
         {
             "name": "yiisoft/yii2",
@@ -718,9 +718,9 @@
                 "bower-asset/jquery": ">=1.7"
             },
             "require-dev": {
-                "bower-asset/jasmine-ajax": ">=1.3.1,<1.4",
-                "bower-asset/jasmine-jquery": ">=1.5.2,<1.6",
-                "bower-asset/jquery": ">=1.7,<1.8"
+                "bower-asset/jasmine-ajax": "~1.3.1",
+                "bower-asset/jasmine-jquery": "~1.5.2",
+                "bower-asset/jquery": "~1.7"
             },
             "type": "bower-asset-library",
             "extra": {
@@ -1010,7 +1010,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "kartik-v/bootstrap-fileinput": 20,
-        "artweb/yii2-multiparser": 20
+        "tsum/yii2-multiparser": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
