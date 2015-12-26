@@ -78,7 +78,7 @@ class DashboardController extends \yii\web\Controller
                 'pageSize' => 2,
             ],]);
 
-        return $this->render('results',
+        return $this->renderAjax('results',
             ['dataProvider' => $dataProvider]);
     }
 

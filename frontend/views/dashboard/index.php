@@ -3,11 +3,13 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\DetailView;
+use yii\widgets\Pjax;
+use yii\bootstrap\Modal;
 use common\components\ListViewWithoutSummary;
+use frontend\assets\DashboardAsset;
 
-/* @var $this yii\web\View */
-/* @var $model frontend\models\DashboardForm */
-/* @var $form ActiveForm */
+
+DashboardAsset::register($this);
 ?>
 <div class="dashboard-index">
 
@@ -47,5 +49,16 @@ use common\components\ListViewWithoutSummary;
     <br/>
     <?= Html::a('LogOut', ['dashboard/logout'], ['class' => 'btn btn-primary', 'name' => 'logOut', 'data-method' => 'post']) ?>
 
+    <?php
+    Modal::begin([
+        'header'=>'<h4>Результаты</h4>',
+        'id' => 'modal',
+        'size'=>'modal-lg',
+    ]);
+
+    echo "<div id='modalContent'></div>";
+
+    Modal::end();
+    ?>
 
 </div><!-- dashboard-index -->

@@ -1,9 +1,10 @@
 <?php
 use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
+use yii\helpers\Url;
 
-//var_dump($widget->dataProvider);
-//var_dump($model);
+
+
 ?>
 <div class="post">
 
@@ -28,7 +29,7 @@ use yii\helpers\HtmlPurifier;
 
         <tr>
             <td>
-                <?= Html::a("Все результаты", ['dashboard/results', 'testid' => $model->testid ]) ?>
+                <?= Html::button('Все результаты', ['value'=>Url::to(['dashboard/results', 'testid' => $model->testid]),'class' => 'btn btn-success','id'=>'modalButton']) ?>
             </td>
             <td>
                 <?= Html::a("Запустить тест", ['dashboard/test', 'testid' => $model->testid ], ['class' => 'btn btn-success', 'name' => 'Test']) ?>
@@ -43,6 +44,7 @@ use yii\helpers\HtmlPurifier;
         </tbody>
 
     </table>
+
 
 
 </div>

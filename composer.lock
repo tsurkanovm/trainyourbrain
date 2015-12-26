@@ -4,8 +4,54 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "141ed84638414836623ae49b09725a6b",
+    "hash": "7d6920d3d8a83fcf40110b4b3ea56789",
+    "content-hash": "d030bbde3f9257141572d8412e897119",
     "packages": [
+        {
+            "name": "artweb/yii2-multiparser",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tsurkanovm/yii-multiparser.git",
+                "reference": "7a3cd2728c4b0c9db1b6bcea411f8df87b69ecd3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tsurkanovm/yii-multiparser/zipball/7a3cd2728c4b0c9db1b6bcea411f8df87b69ecd3",
+                "reference": "7a3cd2728c4b0c9db1b6bcea411f8df87b69ecd3",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "yii\\multiparser\\": "lib\\"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mihail Tsurkanov",
+                    "email": "tsurkanovm@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This extension provides a Multiparser solution for Yii framework 2.0.",
+            "homepage": "https://github.com/tsurkanovm/yii-multiparser.git",
+            "keywords": [
+                "csv",
+                "parser",
+                "xlsx",
+                "xml",
+                "yii2"
+            ],
+            "time": "2015-10-26 10:04:39"
+        },
         {
             "name": "bower-asset/bootstrap",
             "version": "v3.3.5",
@@ -322,12 +368,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
-                "reference": "e4906dd5ee852a5333d3ce4d19f69ee855efe844"
+                "reference": "dbfca67925de600be890d3a5d976625b51620046"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/e4906dd5ee852a5333d3ce4d19f69ee855efe844",
-                "reference": "e4906dd5ee852a5333d3ce4d19f69ee855efe844",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/dbfca67925de600be890d3a5d976625b51620046",
+                "reference": "dbfca67925de600be890d3a5d976625b51620046",
                 "shasum": ""
             },
             "type": "library",
@@ -362,7 +408,7 @@
                 "progress",
                 "upload"
             ],
-            "time": "2015-08-26 18:42:44"
+            "time": "2015-10-23 15:58:30"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -507,21 +553,21 @@
         },
         {
             "name": "yiisoft/yii2-bootstrap",
-            "version": "2.0.4",
+            "version": "2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-                "reference": "1b6b1e61cf91c3cdd517d6a7e71d30bb212e4af0"
+                "reference": "1464f93834b1d5edb1f5625f7ffd6c3723fa4923"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/1b6b1e61cf91c3cdd517d6a7e71d30bb212e4af0",
-                "reference": "1b6b1e61cf91c3cdd517d6a7e71d30bb212e4af0",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/1464f93834b1d5edb1f5625f7ffd6c3723fa4923",
+                "reference": "1464f93834b1d5edb1f5625f7ffd6c3723fa4923",
                 "shasum": ""
             },
             "require": {
                 "bower-asset/bootstrap": "3.3.* | 3.2.* | 3.1.*",
-                "yiisoft/yii2": ">=2.0.4"
+                "yiisoft/yii2": ">=2.0.6"
             },
             "type": "yii2-extension",
             "extra": {
@@ -553,7 +599,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2015-05-10 22:08:17"
+            "time": "2015-09-23 17:48:24"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -963,7 +1009,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "kartik-v/bootstrap-fileinput": 20
+        "kartik-v/bootstrap-fileinput": 20,
+        "artweb/yii2-multiparser": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
