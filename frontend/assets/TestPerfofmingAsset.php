@@ -21,6 +21,7 @@ class TestPerfofmingAsset extends AssetBundle
         'js/testsPerforming.js'
     ];
     public $depends = [
+        'yii\bootstrap\BootstrapAsset',
         'yii\web\YiiAsset',
     ];
 }

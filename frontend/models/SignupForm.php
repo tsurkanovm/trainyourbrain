@@ -96,7 +96,7 @@ class SignupForm extends Model{
             $user = Yii::$app->user->identity;
             if ($this->photo) {
 
-                $photoPath = '/uploads/' . $user->userid . '.' . $this->photo->extension;
+                $photoPath = '/uploads/' . $user->user_id . '.' . $this->photo->extension;
                 $this->photo->saveAs( Yii::getAlias('@webroot') . $photoPath );
                 $user->photo = $photoPath;
             }

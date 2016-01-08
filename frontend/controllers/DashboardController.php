@@ -40,7 +40,6 @@ class DashboardController extends \yii\web\Controller
 
     public function actionIndex()
     {
-
         $user_model = User::findIdentity(Yii::$app->user->id);
 
         $dataProvider = new ActiveDataProvider([
@@ -66,14 +65,14 @@ class DashboardController extends \yii\web\Controller
 
     public function actionResults()
     {
-        $testId = 0;
+        $test_id = 0;
         $get_array = Yii::$app->request->get();
 
-        if( isset( $get_array['testid'] ) )
-            $testId = $get_array['testid'];
+        if( isset( $get_array['test_id'] ) )
+            $test_id = $get_array['test_id'];
 
         $dataProvider = new ActiveDataProvider([
-            'query' => Result::find()->andFilterWhere(['userid' => Yii::$app->user->id, 'testid' => $testId]),
+            'query' => Result::find()->andFilterWhere(['user_id' => Yii::$app->user->id, 'test_id' => $test_id]),
             'pagination' => [
                 'pageSize' => 2,
             ],]);
@@ -85,7 +84,30 @@ class DashboardController extends \yii\web\Controller
 
     public function actionTest()
     {
-        return $this->render('test');
+        $test_id = 0;
+        $get_array = Yii::$app->request->get();
+
+        if( isset( $get_array['test_id'] ) )
+            $test_id = $get_array['test_id'];
+
+        return $this->render('test',
+            ['user' => Yii::$app->user->id,
+            'test' => $test_id]);
+    }
+
+    public function actionSetResult()
+    {
+        $results_model = new Result();
+        $results_model->loadDefaultValues();
+        $testing_results_arr =  ['Result' => Yii::$app->request->post()];
+        if ( $results_model->load( $testing_results_arr ) && $results_model->save() ) {
+
+            echo 1;
+        }
+        else{
+            //@todo - design error page and redirect yere to this page with AR validate errors
+                echo 0;
+        }
     }
 
     public function actionLogout()

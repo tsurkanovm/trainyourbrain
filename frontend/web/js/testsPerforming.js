@@ -1,30 +1,36 @@
 
 window.onload = function(){
     var answer;
-    var total_exp = 10;
+    var total_exp = 3;
     var current_exp = 1;
-    var set_interval_id = null;
     var currentTimeVal = 1;
-    var btn_start = document.getElementById('btn_start');
-    var btn_stop = document.getElementById('btn_stop');
-    var board = document.getElementById('board');
+    var set_interval_id = null;
 
-    if(btn_start)
-        btn_start.onclick = start;
 
-    if(btn_stop)
-        btn_stop.onclick = pause;
+    var board = $("#board");
+    var clock = $("#clock");
 
+    var test = $("#test_tool");
+    test.tooltip('show');
+
+    console.log(12343);
+
+    var result = {
+        user_id: board.data("user"),
+        test_id: board.data("test"),
+        result: 0
+    };
+    //console.log(document.location.origin + "/frontend/web/dashboard");
+    start();
 
     function clockGoesOn(){
-        var el = document.getElementById('clock');
-        if (el) {
-            el.innerHTML = currentTimeVal;
+        if ( clock.length ) {
+            clock.text( currentTimeVal );
             currentTimeVal++;
         }
     }
 
-    function start(){
+    function start( ){
 
         set_interval_id = setInterval(clockGoesOn, 1000);
         addNewExpression();
@@ -33,43 +39,50 @@ window.onload = function(){
     function pause(){
         if( set_interval_id )
             clearInterval(set_interval_id)
-        var answer_input = document.getElementById('answer_input');
+        var answer_input = $("#answer_input");
         if (answer_input) {
             answer_input.disabled = true
         }
     }
 
     function addNewExpression(){
-        var title = "Решено - " + current_exp + " из " + total_exp;
-        var title_tag = document.createElement("h4");
-        title_tag.innerHTML = title;
 
-        var expression = document.getElementById('exp');
-        if (expression) {
+        var title = "Решено - " + (current_exp - 1) + " из " + total_exp;
+        var title_tag = $("<h4></h4>");
+
+        title_tag.text( title );
+        var expression = $("#exp");
+
+        if ( expression.length ) {
             // already exist, so refresh it
-            expression.innerHTML = '';
+            expression.text("");
         }else{
-            var expression = document.createElement("div");
-            expression.id = "exp";
+            expression = $("<div></div>");
+            expression.attr("id" , "exp");
         }
+        var answer_input = $("<input>");
+        answer_input.attr("id", "answer_input");
+        // options for tooltip, for popup window if given answer was wrong
+        answer_input.attr("data-placement", "right");
+        answer_input.attr("data-delay", "100");
+        answer_input.attr("data-title", "Ответ неверный!!");
+        answer_input.attr("data-trigger", "manual");
+        // ===
+        answer_input.keypress( checkAnswer );
 
-        var answer_input = document.createElement("input");
-        answer_input.id = 'answer_input';
-        answer_input.onkeypress = checkAnswer;
+        expression.append( title_tag, createExpression(), answer_input).appendTo( board );
 
-        expression.appendChild(title_tag);
-        expression.innerHTML = expression.innerHTML + createExpression();
-        expression.appendChild(answer_input);
-        board.appendChild(expression);
     }
 
     function checkAnswer ( event ){
-        if (event.keyCode == 13) {
+        if ( event.keyCode == 13 ) {
+            var answer_input = $("#answer_input");
             if ( answer == document.activeElement.value ) {
+
                 current_exp++;
-                if ( current_exp < total_exp ) {
+                if ( current_exp - 1 < total_exp ) {
                     addNewExpression();
-                    var answer_input = document.getElementById('answer_input');
+
                     if (answer_input) {
                         answer_input.focus();
                     }
@@ -77,22 +90,32 @@ window.onload = function(){
                     finishTest();
                 }
 
+            } else {
+                //console.log( answer_input.data() );
+                //answer_input.tooltip(answer_input.data());
+                answer_input.tooltip('show');
             }
         }
     }
 
     function finishTest(){
         pause();
-        var expression = document.getElementById('exp');
+        var expression = document.getElementById("exp");
         if (expression) {
             // already exist, so refresh it
-            expression.innerHTML = '';
+            expression.innerHTML = "";
         }
-
-        var title = "Поздравляем " + total_exp + " примеров решены за " + currentTimeVal + " секунд!";
+        result.result = currentTimeVal;
+        var title = "Поздравляем " + total_exp  + " примеров решены за " + currentTimeVal + " секунд!";
         var title_tag = document.createElement("h4");
         title_tag.innerHTML = title;
-        board.appendChild(title_tag);
+        board.append(title_tag);
+
+        $.post( document.location.origin + "/frontend/web/dashboard/set-result", result, function(){
+            document.location.replace( document.location.origin + "/frontend/web/dashboard" );
+        },'JSON' );
+
+
     }
 
     function getRandomInt(min, max) {
@@ -103,33 +126,33 @@ window.onload = function(){
         var sign_index = getRandomInt(0,2);
         switch (sign_index) {
             case 0:
-                return '+';
+                return "+";
             case 1:
-                return '-';
+                return "-";
             default :
-                return '*';
+                return "*";
         }
     }
 
     function createExpression(){
         var sign = getSign();
-        if (sign == '-') {
+        if (sign == "-") {
             var first = getRandomInt(9,19);
             var second = getRandomInt(0,9);
             answer = first - second;
 
-        }else if( sign == '+' ) {
+        }else if( sign == "+" ) {
             var first = getRandomInt(0,9);
             var second = getRandomInt(0,9);
             answer = first + second;
         }
-        else if( sign == '*' ) {
+        else if( sign == "*" ) {
             var first = getRandomInt(0,9);
             var second = getRandomInt(0,9);
             answer = first * second;
         }
 
-        return first + ' ' + sign + ' ' + second + ' = ';
+        return first + " " + sign + " " + second + " = ";
     }
 }
 

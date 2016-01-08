@@ -7,12 +7,13 @@ TestPerfofmingAsset::register($this);
 <h1>dashboard/test</h1>
 
 <div>
-    Here is the clock:<span id="clock">0</span>s
+    <span id="clock">0</span>s
 </div>
-<div id="board">
-    <button id="btn_start">Start</button>
-    <button id="btn_stop">Pause</button>
-    <br/>
-    <br/>
+<div id="board" data-user = <?=$user?> data-test = <?=$test?>>
+
+
 </div>
 
+<div id="test_tool" data-title = '121212' >
+Наведи на меня
+</div>

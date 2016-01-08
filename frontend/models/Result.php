@@ -7,11 +7,11 @@ use Yii;
 /**
  * This is the model class for table "result".
  *
- * @property integer $idResult
+ * @property integer $result_id
  * @property integer $result
  * @property string $date_participate
- * @property string $idUser
- * @property integer $idTest
+ * @property string $user_id
+ * @property integer $test_id
  */
 class Result extends \yii\db\ActiveRecord
 {
@@ -20,7 +20,7 @@ class Result extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'result';
+        return '{{%result}}';
     }
 
     /**
@@ -29,8 +29,8 @@ class Result extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['result', 'date_participate', 'idUser', 'idTest'], 'required'],
-            [['result', 'idUser', 'idTest'], 'integer'],
+            [['result', 'date_participate', 'user_id', 'test_id'], 'required'],
+            [['result', 'user_id', 'test_id'], 'integer'],
             [['date_participate'], 'safe']
         ];
     }
@@ -41,11 +41,11 @@ class Result extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idResult' => Yii::t('app', 'Id Result'),
+            'result_id' => Yii::t('app', 'Id Result'),
             'result' => Yii::t('app', 'Result'),
             'date_participate' => Yii::t('app', 'Date Participate'),
-            'idUser' => Yii::t('app', 'Id User'),
-            'idTest' => Yii::t('app', 'Id Test'),
+            'user_id' => Yii::t('app', 'Id User'),
+            'test_id' => Yii::t('app', 'Id Test'),
         ];
     }
 

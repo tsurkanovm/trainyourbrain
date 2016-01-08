@@ -29,10 +29,10 @@ use yii\helpers\Url;
 
         <tr>
             <td>
-                <?= Html::button('Все результаты', ['value'=>Url::to(['dashboard/results', 'testid' => $model->testid]),'class' => 'btn btn-success','id'=>'modalButton']) ?>
+                <?= Html::button('Все результаты', ['value'=>Url::to(['dashboard/results', 'test_id' => $model->test_id]),'class' => 'btn btn-success','id'=>'modalButton']) ?>
             </td>
             <td>
-                <?= Html::a("Запустить тест", ['dashboard/test', 'testid' => $model->testid ], ['class' => 'btn btn-success', 'name' => 'Test']) ?>
+                <?= Html::a("Запустить тест", ['dashboard/test', 'test_id' => $model->test_id ], ['class' => 'btn btn-success', 'name' => 'Test']) ?>
             </td>
             <td>
 

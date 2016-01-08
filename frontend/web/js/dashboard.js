@@ -1,9 +1,9 @@
-$(function(){
-
+$(document).ready(function(){
     // get the click of the create button
-    $(document).on('#modalButton', 'click', function (){
+    $(document).on('click','#modalButton', function (){
         $('#modal').modal('show')
             .find('#modalContent')
-            .load($(this).attr('value'));
+            .load( document.location.origin + $(this).attr('value') );
     });
-});
+
+})

@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "role".
  *
- * @property integer $idrole
+ * @property integer $role_id
  * @property string $title
  */
 class Role extends \yii\db\ActiveRecord
@@ -26,8 +26,8 @@ class Role extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idrole', 'title'], 'required'],
-            [['idrole'], 'integer'],
+            [['role_id', 'title'], 'required'],
+            [['role_id'], 'integer'],
             [['title'], 'string', 'max' => 20],
             [['title'], 'unique']
         ];
@@ -39,7 +39,7 @@ class Role extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idrole' => Yii::t('app', 'Idrole'),
+            'role_id' => Yii::t('app', 'role_id'),
             'title' => Yii::t('app', 'Title'),
         ];
     }

@@ -8,7 +8,7 @@ use common\components\CustomVarDamp;
 /**
  * This is the model class for table "test".
  *
- * @property integer $idTest
+ * @property integer $test_id
  * @property string $title
  * @property string $type
  */
@@ -38,7 +38,7 @@ class Test extends \yii\db\ActiveRecord
     public function getBestResult()
     {
         $result = 0;
-        $res_query = $this->hasOne(Result::className(), ['testid' => 'testid'])->andFilterWhere(['userid' => Yii::$app->user->id])->orderBy(['result' => SORT_ASC])->one();
+        $res_query = $this->hasOne(Result::className(), ['test_id' => 'test_id'])->andFilterWhere(['user_id' => Yii::$app->user->id])->orderBy(['result' => SORT_ASC])->one();
         if ( $res_query !== null )
             $result = $res_query->result;
 
@@ -50,7 +50,7 @@ class Test extends \yii\db\ActiveRecord
     public function getLastResult()
     {
         $result = 0;
-        $res_query = $this->hasOne(Result::className(), ['testid' => 'testid'])->andFilterWhere(['userid' => Yii::$app->user->id])->orderBy(['date_participate' => SORT_DESC])->one();
+        $res_query = $this->hasOne(Result::className(), ['test_id' => 'test_id'])->andFilterWhere(['user_id' => Yii::$app->user->id])->orderBy(['date_participate' => SORT_DESC])->one();
         if ( $res_query !== null )
             $result = $res_query->result;
 
@@ -62,7 +62,7 @@ class Test extends \yii\db\ActiveRecord
     public function getBestResultDate()
     {
         $result = Yii::t('app', 'not defined');
-        $res_query = $this->hasOne(Result::className(), ['testid' => 'testid'])->andFilterWhere(['userid' => Yii::$app->user->id])->orderBy(['result' => SORT_ASC])->one();
+        $res_query = $this->hasOne(Result::className(), ['test_id' => 'test_id'])->andFilterWhere(['user_id' => Yii::$app->user->id])->orderBy(['result' => SORT_ASC])->one();
         if ( $res_query !== null )
             $result = Yii::$app->formatter->asDate( $res_query->date_participate , 'medium' );
 
@@ -74,7 +74,7 @@ class Test extends \yii\db\ActiveRecord
     public function getLastResultDate()
     {
         $result = Yii::t('app', 'not defined');
-        $res_query = $this->hasOne(Result::className(), ['testid' => 'testid'])->andFilterWhere(['userid' => Yii::$app->user->id])->orderBy(['date_participate' => SORT_DESC])->one();
+        $res_query = $this->hasOne(Result::className(), ['test_id' => 'test_id'])->andFilterWhere(['user_id' => Yii::$app->user->id])->orderBy(['date_participate' => SORT_DESC])->one();
         if ( $res_query !== null )
             $result = Yii::$app->formatter->asDate( $res_query->date_participate , 'medium' );
 
@@ -90,7 +90,7 @@ class Test extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idTest' => Yii::t('app', 'Id Test'),
+            'test_id' => Yii::t('app', 'Id Test'),
             'title' => Yii::t('app', 'test name'),
             'type' => Yii::t('app', 'control test - launch after some days (5 by default) after usual test. Usual test user can launch every day without limitation'),
         ];
